@@ -65,7 +65,13 @@ also need to set `autobuild` to false.
 Run the following command at the root of your documentation:
 
 ```sh
-docker run -itd -v "$(pwd)":/web -p 8000:8000 --name sphinx-server dldl/sphinx-server
+docker run             \
+  -itd                 \
+  -v "$(pwd)":/web     \
+  -u $(id -u):$(id -g) \
+  -p 8000:8000         \
+  --name sphinx-server \
+  dldl/sphinx-server
 ```
 
 **With autobuild enabled:**
@@ -75,7 +81,13 @@ Autobuild is enabled by default. You may add folders and files to the `ignore` l
 Run the following command at the root of your documentation:
 
 ```sh
-docker run -itd -v "$(pwd)":/web -u $(id -u):$(id -g) -p 8000:8000 --name sphinx-server dldl/sphinx-server
+docker run             \
+  -itd                 \
+  -v "$(pwd)":/web     \
+  -u $(id -u):$(id -g) \
+  -p 8000:8000         \
+  --name sphinx-server \
+  dldl/sphinx-server
 ```
 
 The web server will be listening on port `8000`.
